@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="icon" type="image/icon" href="./assets/play.ico">
-		<link type="text/css" rel="stylesheet" href="./css/normalize.css">
+		<link type="text/css" rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
 		<link type="text/css" rel="stylesheet" href="./css/style.css">
 	</head>
 <body>
