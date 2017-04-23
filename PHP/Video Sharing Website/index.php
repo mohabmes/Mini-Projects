@@ -18,8 +18,7 @@ $pages += ($numVideos%$item_on_page>0);
 
 if(!empty($_GET['p'])&& isset($_GET['p']) && is_numeric($_GET['p'])){
 	if($_GET['p']>$pages){
-		header('Location: index.php');
-		die();
+		header('Location: 404.php');
 	}
 	$p = intval($_GET['p']);
 	$start_item = ($p-1)*$item_on_page;
@@ -28,28 +27,25 @@ if(!empty($_GET['p'])&& isset($_GET['p']) && is_numeric($_GET['p'])){
 $randomVideos = get4RandomVideos();
 
 //Get Recently Added Videos
-$videos = getRecentVideos($start_item, $item_on_page);
+$videos = getRecentVideos($start_item);
 
 require('inc/header.php');
-
 ?>
-	
+
+<p class="title">Random Videos</p>
+<div class="panel">
 <?php 
-	if(!isset($_GET['p'])){ 
-		echo '<p class="title">Random Videos</p>';
-		echo '<div class="panel">';
-		foreach($randomVideos as $k => $i){
-			videoPreview($i);
-		}
-		echo '</div>';
+	foreach($randomVideos as $k => $i){
+		videoPreview($i);
 	}
 ?>
+</div>
 
 <p class="title">Added Recently</p>
 <div class="panel wrapper">		
 	<?php
 		if(empty($videos)){
-			echo '<center><< No Videos Uploaded >></center>';
+			echo '<center><< No Videos to show >></center>';
 		}else{
 			foreach($videos as $k => $i){
 				videoPreview($i);
@@ -57,13 +53,14 @@ require('inc/header.php');
 		}
 	?>
 </div>
+
 <div class="content">
 	<?php
 		for($i=1; $i<=$pages; $i++){
-			if($i==1){echo '<a href="index.php">'.$i.'</a>';}
-			else echo '<a href="index.php?p='.$i.'">'.$i.'</a>';
+			echo '<a href="index.php?p='.$i.'">'.$i.'</a>';
 			if($i<$pages){echo '<span class="separate"> | </span>';}
 		}
 	?>
 </div>
+
 <?php require('inc/footer.php');?>
