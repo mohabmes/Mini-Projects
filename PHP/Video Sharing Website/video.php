@@ -3,7 +3,7 @@ require('inc/connection.php');
 require('inc/function.php');
 
 if(!isset($_GET['id'])|| empty($_GET['id'])|| !is_numeric($_GET['id']) ){
-	header('Location: index.php');
+	header('Location: 404.php');
 }
 
 $id = $_GET['id'];
@@ -14,7 +14,7 @@ $video = getVideoData($id);
 if($_SERVER["REQUEST_METHOD"] != "POST"){
 	//if the query result is empty or not setted redirect
 	if(!isset($video)||empty($video)){
-		header('Location: index.php');
+		header('Location: 404.php');
 	}
 }
 
@@ -31,7 +31,9 @@ if(empty($error_message)&& !isset($error_message)){
 	$description = $video['description'];
 	$loca = $video['vid_loca'];
 	$date = $video['date'];
-
+	
+	$like = getVoteCount($id, 1);
+	$dislike = getVoteCount($id, 0);
 }
 
 $header = "Video | ".$title;
@@ -64,10 +66,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	header('refresh:3;url=video.php?id='.$id.'&op=done');
 }
 
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+} else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+    $ip = $_SERVER['REMOTE_ADDR'];
+}
+$ip = ip2long($ip);
+@$usr_id = $_SESSION['id'];
 ?>
+<script>
+console.log("Just for testing");
+function getVote(int) {
+  if (window.XMLHttpRequest) {
+    xmlhttp=new XMLHttpRequest();
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (this.readyState==4 && this.status==200) {
+      document.getElementById("poll").innerHTML=this.responseText;
+    }
+  }
+  xmlhttp.open("GET","inc/vote.php?user="+<?php if(empty($usr_id))echo $ip; else echo $usr_id; ?>+"&vote="+int+"&vid="+<?php echo $id; ?>,true);
+  xmlhttp.send();
+}
+</script>
+
 <div class="video">
-	<video controls name="media" poster="/Play/media/thumbnail/<?php echo $loca;?>.jpg">
-		<source src="/Play/media/video/<?php echo $loca;?>.mp4" type="video/mp4">
+	<video controls name="media" poster="./media/thumbnail/<?php echo $loca;?>.jpg">
+		<source src="./media/video/<?php echo $loca;?>.mp4" type="video/mp4">
 			Media Player Error.
 	</video>
 	<h3><?php 
@@ -87,7 +114,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<a href="profile.php?username=<?php echo $username; ?>"><b><?php echo $fullname; ?></b></a>
 		in
 		<b><?php echo $date; ?></b>
-	</span>
+
+	</span>		
+	<div class="vote-sec">
+		<form id="poll">
+	
+			<input type="button" value="UpVote" onclick="getVote(1)">
+			<span><?php echo $like; ?></span>
+			<input type="button" value="DownVote" onclick="getVote(0)">
+			<span><?php echo $dislike; ?></span>
+		
+		</form>
+	</div>
 </div>
 
 
