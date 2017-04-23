@@ -54,6 +54,8 @@ a{
 	display: table;
 	clear: both;
 }
+
+
 /* ===================================================== 
   Header File = Navigation
 ======================================================== */
@@ -141,6 +143,8 @@ input:hover{ cursor: pointer;}
 	background-color: yellow;
 	opacity:0.5;
 }
+
+
 /* ===================================================== 
   Login & Register Page
 ======================================================== */
@@ -177,6 +181,8 @@ form td textarea {
     font-size: 14px;
     font-family: 'Open Sans', sans-serif;
 }
+
+
 /* ===================================================== 
   Admin Page
 ======================================================== */
@@ -215,6 +221,8 @@ form td textarea {
 }
 .panel input[value="Accept"]{ background-color:green; }
 .panel input[value="Ignore"]{ background-color:red; }
+
+
 /* ===================================================== 
   Profile Page
 ======================================================== */
@@ -281,6 +289,8 @@ form td textarea {
 	opacity:0.8;
 	color:black;
 }
+
+
 /* ===================================================== 
   video Page
 ======================================================== */
@@ -307,6 +317,8 @@ form td textarea {
 	background-color:tomato;
 	border-radius:5px;
 }
+
+
 /*  ---- Comment Section ----  */
 .comment{
 	
@@ -328,6 +340,8 @@ background-color:white;
 .comment p{
 	margin-left:25px;
 }
+
+
 /* ===================================================== 
   Search page
 ======================================================== */
@@ -359,6 +373,8 @@ background-color:white;
 	color:black;
 	opacity:0.5;
 }
+
+
 /* ===================================================== 
   footer inc file
 ======================================================== */
@@ -379,8 +395,6 @@ background-color:white;
 .footer a {color: #539def; margin: 0 10px;}
 .footer li:first-child a {margin-left: 4px;}
 .footer a:hover, .footer a:active {text-decoration: underline;}
-
-
 
 
 /* ===================================================== 
@@ -421,6 +435,8 @@ background-color:white;
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
 }
+
+/**** delete btn ******/
 .btn-dlt{
 	display:inline;
 }
@@ -437,3 +453,42 @@ background-color:white;
 	border-bottom:1px dotted grey;
 }
 
+/**** Vote Section ******/
+.vote-sec{
+	display:inline-block;
+	float:right;
+	top: -25px;
+}
+.vote-sec span{
+	font-size:0.8125em;
+}
+.vote-sec input{
+	font-size:0.825em;
+	text-indent:-999px;
+	display:inline-block;
+	width:35px;
+	height:35px;
+	margin:0 10px;
+	border:none;
+	vertical-align:middle;
+	background: url("../assets/thumbsUp.png") no-repeat  2px 2px;
+	background-size: 30px 30px;
+}
+input[value="DownVote"]{
+	background: url("../assets/thumbsDown.png") no-repeat  2px 2px;
+	background-size: 30px 30px;
+}
+.vote-sec input:hover{
+	background-color: #7aff7a;
+	border-radius:50%;
+	
+}
+input[value="DownVote"]:hover{
+	background-color: #ff7a7a;
+}
+.vote-sec span{
+	display:inline-block;
+	background-color: #ccc;
+	padding: 2px 7px;
+	border-radius:7px;
+}
