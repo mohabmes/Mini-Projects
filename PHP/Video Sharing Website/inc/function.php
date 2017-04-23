@@ -29,15 +29,13 @@ function get4RandomVideos(){
 	}catch(Exception $e){
 		$error_message[] = "Error : ".$e->getMessage();
 	}
-	
-	
 }
 
 function videoPreview($i){
 	echo '
 	<div class="video-preview">
 		<a href="video.php?id='.$i['vid'].'">
-			<img src="/Play/media/thumbnail/'.$i['thumbnail_loca'].'.jpg">
+			<img src="./media/thumbnail/'.$i['thumbnail_loca'].'.jpg">
 			<img src="assets/play.jpg" class="logo">
 			<p>'.$i['title'].'</p>
 		</a>
@@ -50,8 +48,8 @@ function videoPreview($i){
 function adminPreview($i){
 	echo 
 	'<div class="panel">
-		<video controls name="media" poster="/Play/media/thumbnail/'.$i['vid_loca'].'.jpg">
-			<source src="/Play/media/video/'.$i['vid_loca'].'.mp4" type="video/mp4">
+		<video controls name="media" poster="./media/thumbnail/'.$i['vid_loca'].'.jpg">
+			<source src="./media/video/'.$i['vid_loca'].'.mp4" type="video/mp4">
 				Media Player Error.
 		</video>
 		<h3>'.$i['title'].'</h3>
@@ -71,7 +69,7 @@ function searchPreview($i){
 	echo 
 	'<div class="searchPreview">
 		<a href="video.php?id='.$i['vid'].'">
-			<img src="/Play/media/thumbnail/'.$i['vid_loca'].'.jpg" type="image/jpg">
+			<img src="./media/thumbnail/'.$i['vid_loca'].'.jpg" type="image/jpg">
 			<h3>'.$i['title'].'</h3>
 		</a>
 		<a href="../profile.php?username='.$i['username'].'">'.ucfirst($i['fullname']).'</a>
@@ -166,14 +164,14 @@ function getAllVideosCount(){
 	}
 }
 
-function getRecentVideos($start_item, $item_on_page){
+function getRecentVideos($start_item){
 	global $db;
+	$s = $start_item;
 	//Get Recently Added Videos
 	//SELECT videos.id AS vid, title, description, id_owner, vid_loca, thumbnail_loca, date, users.id AS uid, username, fullname FROM videos JOIN users WHERE id_owner = users.id ORDER BY videos.id DESC
 	try{
-		$q = $db->prepare("SELECT videos.id AS vid, title, description, id_owner, vid_loca, thumbnail_loca, date, users.id AS uid, username, fullname FROM videos JOIN users WHERE id_owner = users.id ORDER BY videos.id DESC LIMIT ".$start_item.",".$item_on_page."");
-		//$q->bindParam(1, $start_item);
-		//$q->bindParam(2, $end_item);
+		$q = $db->prepare("SELECT videos.id AS vid, title, description, id_owner, vid_loca, thumbnail_loca, date, users.id AS uid, username, fullname FROM videos JOIN users WHERE id_owner = users.id ORDER BY videos.id DESC LIMIT ".$s." , 8");
+		//$q->bindParam(1, $s);
 		$q->execute();
 		$videos = $q->fetchAll(PDO::FETCH_ASSOC);
 		return $videos;
@@ -372,6 +370,61 @@ function deleteComment($id){
 	}
 }
 
+function getVoteCount($id, $v){
+	global $db;
+	try{
+		$q = $db->prepare("SELECT COUNT(id) FROM votes WHERE vote = ? AND id_vid = ? ");
+		$q->bindParam(1, $v);
+		$q->bindParam(2, $id);
+		$q->execute();
+		$cnt = $q->fetch(PDO::FETCH_ASSOC);
+		return $cnt['COUNT(id)'];
+	}catch(Exception $e){
+		$error_message[] = "Error : ".$e->getMessage();
+	}
+}
+
+function votedBefore($id, $vid){
+	global $db;
+	try{
+		$q = $db->prepare("SELECT id FROM votes WHERE id_owner = ? AND id_vid = ? ");
+		$q->bindParam(1, $id);
+		$q->bindParam(2, $vid);
+		$q->execute();
+		$cnt = $q->fetch(PDO::FETCH_ASSOC);
+		return $cnt['id'];
+	}catch(Exception $e){
+		$error_message[] = "Error : ".$e->getMessage();
+	}
+}
+
+function addVote($v, $id, $vid){
+	global $db;
+	try{
+		$q = $db->prepare("INSERT INTO votes( vote, id_owner, id_vid) VALUES ( ? , ? , ? )");
+		$q->bindParam(1, $v);
+		$q->bindParam(2, $id);
+		$q->bindParam(3, $vid);
+		$q->execute();
+	}catch(Exception $e){
+		$error_message[] = "Error : ".$e->getMessage();
+	}
+}
+
+function updateVoted($v, $id, $vid, $voteid){
+	global $db;
+	try{
+		$q = $db->prepare("UPDATE votes SET vote = ? ,id_owner = ? ,id_vid = ?  WHERE id = ?");
+		$q->bindParam(1, $v);
+		$q->bindParam(2, $id);
+		$q->bindParam(3, $vid);
+		$q->bindParam(4, $voteid);
+		$q->execute();
+	}catch(Exception $e){
+		$error_message[] = "Error : ".$e->getMessage();
+	}
+}
+
 function loader($msg){
 	echo '<div class="overlay">
 				<div class="loader"></div>
@@ -379,5 +432,4 @@ function loader($msg){
 		</div>';
 }
 
-//Captalize
 ?>
