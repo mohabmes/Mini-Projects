@@ -1,0 +1,9 @@
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\bin\Debug\KT.exe.config
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\bin\Debug\KT.exe
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\bin\Debug\KT.pdb
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\obj\Debug\KT.csprojResolveAssemblyReference.cache
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\obj\Debug\KT.Form1.resources
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\obj\Debug\KT.Properties.Resources.resources
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\obj\Debug\KT.csproj.GenerateResource.Cache
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\obj\Debug\KT.exe
+c:\users\mmes\documents\visual studio 2013\Projects\KT\KT\obj\Debug\KT.pdb
