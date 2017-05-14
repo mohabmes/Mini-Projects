@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mmes.DailyDiary.AddActivity">
+
+    <TextView
+        android:id="@+id/dir"
+        android:text="Add New Diary"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_margin="15dp"
+        android:textSize="20sp"
+        />
+    <Button
+        android:id="@+id/save"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@android:drawable/ic_menu_save"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+
+        android:text=""
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dir"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:text="Title : " />
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_below="@id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:inputType="textPersonName"
+        android:text=""
+        />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:text="Diary :"
+        />
+
+    <EditText
+        android:id="@+id/txt"
+        android:layout_below="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_margin="10dp"
+        android:inputType="textMultiLine"
+        android:gravity="left"
+        />
+</android.widget.RelativeLayout>

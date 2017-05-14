@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mmes.DailyDiary.MainActivity">
+
+    <TextView
+        android:id="@+id/AppName"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:text="Daily Diary"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@android:drawable/ic_input_add"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:text=""
+        />
+    <Button
+        android:id="@+id/setting"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@android:drawable/ic_menu_set_as"
+        android:padding="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="10dp"
+        android:text=""
+        />
+
+    <ListView
+        android:id="@+id/dairyList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/AppName"
+        />
+
+</android.widget.RelativeLayout>
