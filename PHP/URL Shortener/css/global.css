@@ -1,0 +1,29 @@
+body, input{
+  font: 0.825em Tahoma sans-serif
+}
+.title{
+  font-weight: normal;
+}
+.container{
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+input{
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin: 0;
+}
+input[type="url"]{
+  width: 300px;
+}
+input[type="submit"]{
+  padding: 10px 17px;
+  background-color:#07a7c0;
+  color: white;
+}
+input[type="submit"]:hover{
+  cursor: pointer;
+}

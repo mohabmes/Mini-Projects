@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,9 +12,17 @@
     <div class="container">
       <h1 class="title">Shorten a URL.</h1>
 
+      <?php
+        if(isset($_SESSION['feedback'])){
+          echo "<p>{$_SESSION['feedback']}</p>";
+          session_unset();
+        }
+      ?>
+
       <form action="shorten.php" method="post">
         <input type="url" name="url" placeholder="Enter a URL here">
-        <input type="submit" value="Shorten">
+        <input type="submit" value="OK">
       </form>
     </div>
   </body>
+</html>
