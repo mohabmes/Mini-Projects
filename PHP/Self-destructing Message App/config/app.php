@@ -1,0 +1,14 @@
+<?php
+
+return [
+  'url' => 'http://localhost',
+
+  'db' => [
+    'mysql' => [
+      'host' => '127.0.0.10',
+      'dbname' => 'destructy',
+      'username' => 'root',
+      'password' => 'root'
+    ]
+  ]
+];

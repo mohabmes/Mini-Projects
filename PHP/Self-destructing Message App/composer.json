@@ -1,5 +1,6 @@
 {
     "require": {
-        "slim/slim": "^3.0@RC"
+        "slim/slim": "^3.0@RC",
+        "hassankhan/config": "^0.10.0"
     }
 }
