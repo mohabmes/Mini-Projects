@@ -19,6 +19,17 @@ $app->post('/post', function($request, $response, $args) {
       'message' => $params['message']
   ]);
 
+
+  $this->mail->sendMessage($this->config->get('services.mailgun.domain'), [
+          'from' => 'noreply@MAILGUN_DOMAIN.com',
+          'to' => $params['email'],
+          'subject' => 'New message from Destructy!',
+          'html' => $this->view->fetch('email/message.twig', [
+              'hash' => $hash,
+          ]),
+      ]);
+
+	  
   return $response->withRedirect($this->router->pathFor('home'));
 
 })->setName('send');

@@ -29,6 +29,10 @@ $container['db'] = function($container){
     );
 };
 
+$container['mail'] = function ($c) {
+    return new \Mailgun\Mailgun($c['config']->get('services.mailgun.secret'));
+};
+
 $app = new \Slim\App($container);
 
 require("routes.php");
