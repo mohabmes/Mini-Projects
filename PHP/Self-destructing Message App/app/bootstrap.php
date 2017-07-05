@@ -22,8 +22,7 @@ $container['view'] = function($container){
 
 $container['db'] = function($container){
   return new PDO(
-        'mysql:host=' . $container['config']->get('db.mysql.host') . 
-		';dbname=' . $container['config']->get('db.mysql.dbname'),
+        'mysql:host=' . $container['config']->get('db.mysql.host') . ';dbname=' . $container['config']->get('db.mysql.dbname'),
         $container['config']->get('db.mysql.username')
         //,$container['config']->get('db.mysql.password')
     );
