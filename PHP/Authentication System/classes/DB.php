@@ -25,4 +25,69 @@ class DB {
     return self::$_instance;
   }
 
+  public function query($sql, $params = array()){
+    $this->_error = false;
+    $this->_count = 0;
+    if($this->_query = $this->_pdo->prepare($sql)){
+      if(count($params)){
+        $i = 1;
+        foreach ($params as $key) {
+          $this->_query->bindValue($i, $key);
+          $i++;
+        }
+      }
+      if($this->_query->execute()){
+        $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
+        $this->_count = $this->_query->rowCount();
+      }
+      else {
+        $this->_error = true;
+      }
+    }
+    return $this;
+  }
+
+  private function action($action, $table, $where = array()){
+    if (count($where) === 3) {
+      $operators = array('=', '>', '<', '>=', '<=');
+
+      $field    = $where[0];
+      $operator = $where[1];
+      $value    = $where[2];
+
+      if(in_array($operator, $operators)){
+        $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
+
+        if(!$this->query($sql, array($value))->error()){
+          return $this;
+        }
+      }
+    }
+    return false;
+  }
+
+
+  public function get($table, $where){
+    return $this->action('SELECT *',$table, $where);
+  }
+
+  public function delete($table, $where){
+    return $this->action('DELETE',$table, $where);
+  }
+
+  public function results(){
+    return $this->_result;
+  }
+
+  public function first(){
+    return $this->results()[0];
+  }
+
+  public function count(){
+    return $this->_count;
+  }
+
+  public function error(){
+    return $this->_error;
+  }
 }
