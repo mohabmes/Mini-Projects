@@ -66,13 +66,53 @@ class DB {
     return false;
   }
 
-
   public function get($table, $where){
     return $this->action('SELECT *',$table, $where);
   }
 
   public function delete($table, $where){
     return $this->action('DELETE',$table, $where);
+  }
+
+  public function insert($table, $fields = array()){
+    if(count($fields)){
+      $keys = array_keys($fields);
+      $value = '';
+      $x = 1;
+
+      foreach ($fields as $key) {
+        $value .= '?';
+        if($x < count($fields)){
+          $value .=', ';
+        }
+        $x++;
+      }
+      $sql = "INSERT INTO {$table} (`". implode('`, `', $keys) ."`) VALUES ({$value})";
+      if(!$this->query($sql, $fields)->error()){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public function update($table, $id, $fields){
+    $set = '';
+    $x = 1;
+
+    foreach ($fields as $key => $value) {
+      $set .= "{$key} = ?";
+      if($x < count($fields)){
+        $set .= ', ';
+      }
+      $x++;
+    }
+
+    $sql = "UPDATE `{$table}` SET {$set} WHERE id = {$id}";
+
+    if(!$this->query($sql, $fields)->error()){
+      return true;
+    }
+    return false;
   }
 
   public function results(){
@@ -90,4 +130,5 @@ class DB {
   public function error(){
     return $this->_error;
   }
+
 }
