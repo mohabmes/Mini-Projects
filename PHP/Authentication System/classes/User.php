@@ -4,7 +4,7 @@ class User {
           $_data,
           $_sessionName,
           $_cookieName,
-          $_isLoggedIn;
+          $_isLoggedIn = false;
 
   public function __construct($user = null){
     $this->_db = DB::getInstance();
@@ -26,10 +26,33 @@ class User {
     }
   }
 
+  public function update($fields = array(), $id = null) {
+
+    if(!$id && $this->isLoggedIn()){
+      $id = $this->data()->id;
+    }
+
+    if(!$this->_db->update('users', $id, $fields)){
+      throw new Exception("There was problem");
+    }
+  }
+
   public function create($fields = array()) {
     if(!$this->_db->insert('users', $fields)) {
         throw new Exception('Sorry, there was a problem creating your account;');
     }
+  }
+
+  public function hasPermission($key) {
+      $group = $this->_db->get('groups', array('id', '=', $this->data()->groups));
+
+      if($group->count()) {
+          $permissions = json_decode($group->first()->permissions, true);
+
+          return !empty($permissions[$key]);
+      }
+
+      return false;
   }
 
   public function find($user = null){
@@ -78,16 +101,16 @@ class User {
     return false;
   }
 
-  private function exists(){
+  public function exists(){
     return (!empty($this->_data))? true : false ;
   }
 
-    private function data(){
-      return $this->_data;
-    }
+  public function data(){
+    return $this->_data;
+  }
 
   public function isLoggedIn(){
-    return $this->_isLoggerIn;
+    return $this->_isLoggedIn;
   }
 
   public function logout(){
