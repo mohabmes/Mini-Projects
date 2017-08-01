@@ -1,16 +1,27 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-</head>
+	<head>
+		<title>MemeMaker</title>
+	</head>
 
-<body>
-	<canvas id="c" width="500" height="500"></canvas>
-
-	<script>
-		var c = document.querySelector("#c");
-		var ctx = c.getContext("2d");
+	<body>
+		<div>
+			<input type="file" id="file">
+			
+		</div>
 		
-	</script>
-</body>
-
+		<div>
+			<canvas width="500" height="500"></canvas>
+		</div>
+		
+		<div>
+			<span>Top Line:</span><br>
+			<input type="text" id="topLineText"><br>
+			<span>Bottom Line:</span><br>
+			<input type="text" id="bottomLineText"><br>
+			<button id="saveBtn">Save</button>
+		</div>
+		
+		<script src="meme.js"></script>
+	</body>
 </html>
