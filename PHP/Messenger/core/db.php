@@ -1,2 +1,7 @@
 <?php
-$db = new PDO('mysql:host=127.0.0.1;dbname=messenger', 'root');
+$dbConfig = $config['db'];
+try{
+  $db = new PDO("mysql:host={$dbConfig['host']};dbname={$dbConfig['dbname']}", "{$dbConfig['user']}");
+} catch(Exception $e) {
+  echo $e->getMessage();
+}
