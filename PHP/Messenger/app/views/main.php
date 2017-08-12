@@ -23,4 +23,5 @@
     </div>
   </div>
 </body>
+<script src="<?php echo RES . "script/script.js"; ?>"></script>
 </html>
