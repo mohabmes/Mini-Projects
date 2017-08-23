@@ -1,7 +1,7 @@
 <?php
+	require_once('inc/db.php');
 	$header = "Login";
 	require_once('inc/header.php');
-	require_once('inc/db.php');
 	
 	if(!empty($_COOKIE['user_id']) && !empty($_COOKIE['user_name']) && !empty($_COOKIE['username']) ){
 		$_SESSION['user_id'] = $_COOKIE['user_id'];
@@ -15,16 +15,12 @@
 	}
 	
 	if(isset($_POST['login'])){
-
-		$qry = $db->prepare('SELECT * FROM users WHERE username=:username AND password=:password');
 		
-		$params = [
-			'username' => $_POST['username'],
-			'password' => $_POST['password']
-		];
-		$qry->execute($params);
-		$user = $qry->fetch(PDO::FETCH_ASSOC);
-
+		//	//	//	//	//
+		$user = new User();
+		$user = $user->login($_POST['username'],$_POST['password']);
+		//	//	//	//	//
+		
 		if(!empty($user)){
 			
 			$_SESSION['user_id'] = $user['id'];
@@ -67,8 +63,8 @@
 		  <div class="form-group">
 		  
 			<div>
-			  <input type="checkbox" name="remember" value="remember" placeholder="remember me">
-			  <label>Remember me</label>
+			  <input type="checkbox" name="remember" id="remember" value="remember" placeholder="remember me">
+			  <label for="remember">Remember me</label>
 			</div>
 		  </div>
 		  

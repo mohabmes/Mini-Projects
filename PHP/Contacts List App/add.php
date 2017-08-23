@@ -1,54 +1,54 @@
 <?php
+	require_once('inc/db.php');
 	$header = "Add new contact";
 	require_once('inc/header.php');
-	require_once('inc/db.php');
-	
+
 	if(!isset($_SESSION['user_id'])){
 		header('Location: login.php');
 		die();
 	}
-	if(isset($_POST['add'])){
 
+	
+	if(isset($_POST['add'])){
 		if(!empty($_POST['name']) && !empty($_POST['mobile']) ){
-				
-				$qry = $db->prepare('INSERT INTO contact( name, email, mobile, country, city, street, user_id) VALUES ( :name, :email, :mobile, :country, :city, :street, :user_id)');
-				
-				foreach($_POST as $k){
-					if(!isset($k))
-						$k = " - ";
-				}
-				
-				$params = [
-					'name' => $_POST['name'],
-					'email' => $_POST['email'],
-					'mobile' => $_POST['mobile'],
-					'country' => $_POST['country'],
-					'city' => $_POST['city'],
-					'street' => $_POST['street'],
-					'user_id' => $_SESSION['user_id']
-				];
+			
+			//	//	//	//	//	//	//
+			$contact = new Contact();
+			
+			$params = [
+				'name' => $_POST['name'],
+				'email' => $_POST['email'],
+				'mobile' => $_POST['mobile'],
+				'country' => $_POST['country'],
+				'city' => $_POST['city'],
+				'street' => $_POST['street']
+			];
+			
+			$create = $contact->addContact($_SESSION['user_id'],$params );
+			//	//	//	//	//	//	//
+
+			if(!$create){
+				header('Location: index.php?error=Something Went Wrong');
+				die();
+			} else {
 				
 				if(!empty($_FILES['img']['tmp_name'])){
 					if(substr($_FILES['img']['type'],0,5) == 'image'){
-						if(!move_uploaded_file($_FILES['img']['tmp_name'], "./img/".$_POST['name'].'.jpg')){
-							header('Location: register.php?error=Something Wrong With The Image');
+						$imgname = $db->lastInsertId();
+						if(!move_uploaded_file($_FILES['img']['tmp_name'], "./img/". $imgname .'.jpg')){
+							header('Location: add.php?error=Something Wrong With The Image');
 							die();
 						}
 					}
 					else {
-						header('Location: register.php?error=Invalid Image');
+						header('Location: add.php?error=Invalid Image');
 						die();
 					}
 				}
 				
-				if(!$qry->execute($params)){
-					header('Location: index.php?error=Something Went Wrong');
-					die();
-				} else {
-					header('Location: index.php?msg=Successfully Added');
-					die();
-				}
-
+				header('Location: index.php?msg=Successfully Added');
+				die();
+			}
 				
 		} else {
 			header('Location: add.php?error=All Fields Required');
@@ -62,7 +62,7 @@
 	
 	<div class="container col-md-5 col-md-offset-3 well custm-bx">
 	<h3>Add New Contact</h3><br>
-	<form class="form-horizontal" method="POST">
+	<form class="form-horizontal" method="POST" enctype="multipart/form-data">
 		
 		  <div class="form-group">
 			<div>

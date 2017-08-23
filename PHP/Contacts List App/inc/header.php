@@ -7,7 +7,7 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<style>
 			.custm-bx{
-				padding:0 30px;
+				padding: 0 40px;
 			}
 			header{
 				background-color:#44494e;
@@ -16,8 +16,13 @@
 				color:white;
 			}
 			header a:hover{
-			color:white;
+				color:white;
 				text-decoration: underline;
+			}
+			.profile img{
+				width: 100%;
+				height: 200px;
+				border-radius: 7px;
 			}
 			.error, .bg-info{
 				padding: 15px;
@@ -35,7 +40,9 @@
 			.bx{
 				padding-bottom:15px;
 				border-bottom : 1px solid #aaa;
+				margin-bottom: 20px;
 			}
+			
 
 		</style>
 	</head>
@@ -50,15 +57,15 @@
 			<nav class="navbar-collapse">
 				<ul class="nav navbar-nav ">
 					<li>
-					<?php
-						$file = "./img/".$_SESSION['username'].".jpg";
-						$avatar = "img/avatar.jpg";
-						if(is_file($file)){
-							echo "<img src='$file'>";
-						} else {
-							echo "<img src='$avatar'>";
-						}
-					?>
+						<?php
+							$file = "./img/p".@$_SESSION['user_id'].".jpg";
+							if(is_file($file)){
+								$imgsrc = $file;
+							} else {
+								$imgsrc = "img/avatar.jpg";
+							}
+						?>
+						<img src="<?=$imgsrc?>">
 					</li>
 					<li>
 						<h5><a href="update_profile.php"><?= $_SESSION['user_name']?></a></h5>
@@ -84,11 +91,11 @@
 	</header>
 	<div class="container">
 	<?php
-	if(isset($_GET['error'])){
-		echo "<p class=\"bg-warning col-sm-12 error\" >{$_GET['error']}</p>";
-	}
-	if(isset($_GET['msg'])){
-		echo "<p class=\"bg-success col-sm-12 error\" >{$_GET['msg']}</p>";
-	}
+		if(isset($_GET['error'])){
+			echo "<p class=\"bg-warning error\" >{$_GET['error']}</p>";
+		}
+		if(isset($_GET['msg'])){
+			echo "<p class=\"bg-success error\" >{$_GET['msg']}</p>";
+		}
 	?>
 	</div>
