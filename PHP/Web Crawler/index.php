@@ -1,7 +1,7 @@
 <label for="url">URL</label>
 <form method="GET">
 	<input type="text" name="url" id="url">
-	<input type="checkbox" name="true" id="only" value="only"><label for="only">Only This Page</label>
+	<input type="checkbox" name="only" id="only" value="true"><label for="only">Only This Page</label>
 	<input type="submit" name="submit" value="Crawl">
 </form>
 
