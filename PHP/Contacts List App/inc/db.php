@@ -6,6 +6,8 @@ catch(Exception $e){
 	die("App Error: " . $e->getMessage());
 }
 
+
+
 class Contact{
 
 	public function getContact($id, $session_id){

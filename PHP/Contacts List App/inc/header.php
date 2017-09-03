@@ -23,6 +23,7 @@
 				width: 100%;
 				height: 200px;
 				border-radius: 7px;
+				border: 1px solid #aaa;
 			}
 			.error, .bg-info{
 				padding: 15px;

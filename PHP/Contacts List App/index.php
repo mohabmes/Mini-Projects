@@ -21,8 +21,8 @@
 	</div>
 	<?php if(!empty($result)):?>
 		<br><br>
-		<div class="col-sm-offset-1 col-sm-10">
-			<table class="table table-condensed">
+		<div class="col-sm-12">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Image</th>
@@ -56,7 +56,7 @@
 						<td><p><?=$contact['country']?></p></td>
 						<td><p><?=$contact['city']?></p></td>
 						<td><p ><?=$contact['street']?></p></td>
-						<td><a href="delete.php?id=<?=$contact['id']?>">X</a></td>
+						<td><a href="delete.php?id=<?=$contact['id']?>">Delete</a></td>
 					</tr>
 				<?php endforeach;?>
 				</tbody>

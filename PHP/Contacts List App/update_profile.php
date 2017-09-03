@@ -15,10 +15,10 @@ if(is_file($file)){
 	$pimgsrc = "img/avatar.jpg";
 }
 
-//	//	//	//
+//	//	//	//	//	//	//	
 $user = new User();
 $result = $user->getUser($_SESSION['user_id']);
-//	//	/	//	/	/	//	
+//	//	//	//	//	//	//	
 
 if(isset($_POST['update'])){
 	if(!empty($_POST['fname']) && !empty($_POST['lname']) &&
