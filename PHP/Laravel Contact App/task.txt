@@ -1,0 +1,29 @@
+Good Evening every one, I hope you are doing well
+
+Lab3 Task - Contact List App:
+
+## BONUSES:
+* updating the profile page.
+* updating and deleting a contact.
+* adding an avatar to a user or a contact.
+
+# Home Page:
+- display all contacts of the logged in user.
+- if there are no contacts yet, display a message saying that.
+- the "New" button will redirect the user to the create new contact page.
+- (BONUS) clicking on the contact's name will redirect to it's update from.
+- (BONUS) clicking on the "x" link will delete this contact then redirect the user to the home page. If the operation succeeded display a success message , otherwise display an error message.
+
+# Create Contact Page:
+- validation on user's inputs.
+- adding avatar to the contact is optional.
+- after submitting the form redirect the user to the home page.
+-If the operation succeeded display a success message , otherwise display an error message and repopulate the user's data.
+
+# (BONUS) Update Contact Page:
+- validation on user's inputs.
+- after submitting the form redirect the user to the same page.If the operation succeeded display a success message , otherwise display an error message and repopulate the user's data.
+
+# (BONUS) Profile Page:
+- validation on user's inputs.
+- after submitting the form redirect the user to the same page.If the operation succeeded display a success message , otherwise display an error message and repopulate the user's data.
