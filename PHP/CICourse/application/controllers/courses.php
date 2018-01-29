@@ -37,7 +37,9 @@ class Courses extends CI_Controller {
 				'start_date' => $this->input->post("start_date"),
 				'end_date' => $this->input->post("end_date"),
 				'note' => $this->input->post("note"),
-				'tag' => $this->input->post("tag")
+				'tag' => $this->input->post("tag"),
+				'price' => $this->input->post("price"),
+				'seats' => $this->input->post("seats")
 			);
 
 			if($this->form_validation->run()){

@@ -33,6 +33,19 @@ include('header.php');
         <label>Additional Note</label><br>
         <textarea name="note" rows="8" cols="105"><?php if(isset($op_type)) echo $course_data->note?></textarea>
       </div>
+	  	  
+      <div class="form-group">
+        <label>Price</label><br>
+        <input type="text" name="price" class="form-control" value="<?php if(isset($op_type)) echo $course_data->price?>">
+      </div>
+      <div class="form-group">
+        <label>Seats Num</label><br>
+        <input type="text" name="seats" class="form-control" value="<?php if(isset($op_type)) echo $course_data->seats?>">
+      </div>
+      <?php if(!isset($op_type)):?>
+        <div class="form-group">
+          <input type="submit" name="Add" value="Add" class="btn btn-info" />
+        </div>
       <?php if(!isset($op_type)):?>
         <div class="form-group">
           <input type="submit" name="Add" value="Add" class="btn btn-info" />
