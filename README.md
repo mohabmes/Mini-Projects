@@ -1,7 +1,7 @@
 # Mini-Projects
 
 This Repository contains a collection of various mini-projects, made just for practicing.
-
+<br>
 ## PHP
 - Authentication System
 - CMS
@@ -9,8 +9,9 @@ This Repository contains a collection of various mini-projects, made just for pr
 - Contacts List App
 - Laravel Contact App
 - Laravel Tasklist App
-- Messenger	Messenger
+- Messenger
 - Self-destructing Message App
+- EduCenter Management
 - URL Shortener
 - Video Sharing Website
 - Web Crawler
