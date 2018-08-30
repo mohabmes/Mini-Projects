@@ -1,0 +1,12 @@
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+body {
+	font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/** background-color: #fafafa; border: 1px solid #DDDFD6; **/
+.bg-light {
+    background-color: #fafafa;
+}

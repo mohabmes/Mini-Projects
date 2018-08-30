@@ -1,0 +1,22 @@
+{% extends 'music/base.html' %}
+{% block title %}Storia{% endblock %}
+{% block body %}
+    {% if error_msg %}
+        <p><strong>Error: </strong>{{error_msg}}</p>
+    {% endif %}
+    <img src="{{album.album_logo.url}}">
+    <h4>{{album.album_title}}</h4>
+    <h5>{{album.artist}}</h5>
+
+    {% if songs %}
+        <h3>Songs:</h3>
+        <ul>
+            {% csrf_token %}
+            {% for song in songs %}
+                <li>{{ song.song_title }} </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p><i>No Songs</i></p>
+    {% endif %}
+{% endblock %}

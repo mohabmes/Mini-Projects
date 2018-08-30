@@ -1,0 +1,28 @@
+{% extends 'music/base.html' %}add_sec
+{% block add_sec %}
+    <a class="nav-link" href="{% url 'music:album-add' %}">Add Album</a>
+{% endblock %}
+{% block title %}Storia{% endblock %}
+{% block body %}
+
+    {% if all_album %}
+        <p>Here are All your Albums:</p>
+        <ul>
+            {% for album in all_album %}
+
+                <li>
+                    <img src="{{album.album_logo.url}}">
+                    <a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a>
+                    <form method="post" action="{% url 'music:album-delete' album.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="album_id" value="{{album.id}}">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <a href="{% url 'music:album-update' album.id %}">Edit</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p><i>No Albums</i></p>
+    {% endif %}
+{% endblock %}
