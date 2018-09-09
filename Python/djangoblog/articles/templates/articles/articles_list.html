@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Articles</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <p>Articles:</p>
+    <div class="article">
+        {% for article in articles %}
+            <div>
+                <a href="#">{{ article.title }}</a>
+                <p>{{ article.snippet }}</p>
+                <span>{{ article.date }}</span>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
