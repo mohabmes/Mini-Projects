@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Articles List</h1>
-    <div class="article">
-        {% for article in articles %}
+    <div>
+        <div class="article">
+            {% for article in articles %}
             <div>
                 <a href="{% url 'articles:detail' slug=article.slug %}">
                     <h2>{{ article.title }}</h2>
@@ -10,6 +11,7 @@
                 <p>{{ article.snippet }}</p>
                 <span>{{ article.date }}</span>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>{{ article.title }}</h1>
-    <p>
-        {{article.body}}
-    </p>
-    <span>{{article.date}}</span>
+    <div>
+        <img src="{{ article.thumbnail.url }}">
+        <h1>{{ article.title }}</h1>
+        <p>
+            {{article.body}}
+        </p>
+        <span>{{article.date}}</span>
+    </div>
 {% endblock %}
