@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 # from .models import Accounts
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 def login_view(request):
 				if request.method == "POST":
@@ -26,3 +26,10 @@ def signup_view(request):
 				else:
 								form = UserCreationForm()
 				return render(request, 'accounts/signup.html', {'form': form})
+
+
+def logout_view(request):
+				# if request.method == "POST":
+				logout(request)
+				return redirect('articles:list')
+
