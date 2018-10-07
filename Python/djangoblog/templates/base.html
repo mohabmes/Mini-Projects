@@ -10,10 +10,18 @@
 <body>
     <div class="wrapper">
         <a href="{% url 'articles:list' %}">Blog</a>
-        <form action="{% url 'accounts:logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
+
+        {% if user.is_authenticated %}
+            <form action="{% url 'accounts:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'accounts:login' %}">Login</a>
+            <a href="{% url 'accounts:signup' %}">Signup</a>
+        {% endif %}
+
+
         {% block content %}
 
         {% endblock %}
